@@ -1,0 +1,21 @@
+<section>
+    <h2>My Top 5 Movies</h2>
+    <form action="/my-movies" method="POST">
+        <input type="text" name="title" placeholder="Enter movie title" required>
+        <button type="submit">Add Movie</button>
+    </form>
+    <ul>
+        {{#each movies}}
+            <li>
+                {{this.title}}
+                <form action="/my-movies/{{this._id}}?_method=PUT" method="POST">
+                    <input type="text" name="title" value="{{this.title}}" required>
+                    <button type="submit">Update</button>
+                </form>
+                <form action="/my-movies/{{this._id}}?_method=DELETE" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {{/each}}
+    </ul>
+</section>
